@@ -1,0 +1,7 @@
+This project is developed by using Eclipse (suggested version Luna).
+Requirements:
+1. TestNG plugin;
+2. EGit;
+3. m2e (Maven plugin);
+4. Lombok (please read the instruction for installation carefully);
+5. Java 1.7 (or up)
