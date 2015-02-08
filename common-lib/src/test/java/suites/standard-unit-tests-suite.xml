@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="StandardUnitTestSuite" thread-count="1">
+    <test name="OgoLibUnitTests" verbose="2">
+        <groups>
+            <run>
+                <include name="support"/>
+                <include name="unit"/>
+                <include name="dao"/>
+                
+                <exclude name="skip"/>
+                <exclude name="broken"/>
+            </run>
+        </groups>
+        
+        <packages>
+            <package name="com.ogomonkey.common.*"/>
+            <package name="com.ogomonkey.security.*"/>
+        </packages>
+    </test>
+</suite>
