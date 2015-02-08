@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.common.entity.customer.Customer" schema="ofudii" table="CUSTOMERS">
+        <id name="id" column="CUSTOMER_ID" type="string">
+            <generator class="uuid2">
+                <param name="uuid_gen_strategy_class">org.hibernate.id.uuid.CustomVersionOneStrategy</param>
+            </generator>
+        </id>
+        
+        <property name="firstName" column="FIRST_NAME" />
+        <property name="lastName" column="LAST_NAME" />
+        <property name="personalType" column="PERSONAL_TYPE" not-null="true" />
+        <property name="login" column="LOGIN" not-null="true" />
+        <property name="encryptedPassword" column="PASSWORD" not-null="true" />
+        <property name="signupStatus" column="SIGNUP_STATUS" not-null="true" />
+        <property name="signupDate" column="SIGNUP_STATUS_DATE" />
+        <property name="riskStatus" column="RISK_STATUS" />
+        <property name="riskStatusDate" column="RISK_STATUS_DATE" />
+        
+        <component name="address" class="com.ogomonkey.common.datatype.Address">
+            <property name="addressLine1" column="ENCRY_ADDR_LINE1" />
+            <property name="addressLine2" column="ENCRY_ADDR_LINE2" />
+            <property name="city" column="CITY" />
+            <property name="state" column="STATE" />
+            <property name="country" column="COUNTRY" />
+            <property name="zipcode" column="ZIPCODE" />
+            <property name="lineEncrypted" column="IS_LINE_ENCRYPTED" />
+        </component>
+        
+        <set name="communications" inverse="true" cascade="all" order-by="STATUS_DATE desc" lazy="true" >
+            <key column="CUSTOMER_ID"/>
+            <one-to-many class="com.ogomonkey.common.entity.customer.CustomerComm"/>
+        </set>
+        
+        <set name="financialInstruments" inverse="true" cascade="all" order-by="SIGNUP_STATUS_DATE desc" lazy="true" >
+            <key column="CUSTOMER_ID"/>
+            <one-to-many class="com.ogomonkey.common.entity.customer.CustomerInstrument"/>
+        </set>
+
+        
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="createdBy" column="CREATED_BY" />
+        <property name="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+        <property name="lastUpdatedBy" column="LAST_UPDATED_BY" />
+    </class>
+</hibernate-mapping>

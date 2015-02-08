@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.eatery.entity.MenuMedia" schema="ofudii" table="RESTAURANT_MENU_MEDIAS">
+        <id name="id" column="MENU_MEDIA_ID" type="string" >
+             <generator class="uuid">
+                <param name="separator">-</param>
+            </generator>
+        </id>
+        
+        <many-to-one name="dishMenu" column="DISH_MENU_ID" class="com.ogomonkey.eatery.entity.DishMenu" />
+        <!-- 
+        <many-to-one name="drinkMenu" column="DRINK_MENU_ID" class="com.ogomonkey.eatery.entity.DrinkMenu" />
+        -->
+        
+        <property name="name" column="NAME" not-null="true" />
+        <property name="mediaType" column="MEDIA_TYPE" not-null="true" />
+        <property name="detailFormat" column="detailFormat" />
+        <property name="quality" column="QUALITY" />
+        <property name="widthPixel" column="WIDTH_PIXEL" />
+        <property name="heightPixel" column="HEIGHT_PIXEL" />
+        <property name="videoSeconds" column="VIDEO_LEN_SECONDS" />
+        <property name="description" column="DESCRIPTION" />
+        <property name="expired" column="IS_EXPIRED" />
+        <property name="expirationDate" column="EXPIRATION_DATE" />
+        
+        <!-- auditing columns -->
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="createdBy" column="CREATED_BY" />
+        <property name="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+        <property name="lastUpdatedBy" column="LAST_UPDATED_BY" />
+    </class>
+</hibernate-mapping>

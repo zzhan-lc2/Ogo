@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.common.entity.business.BusinessPolicy" schema="ofudii" table="RESTAURANT_POLICIES">
+        <id name="id" column="POLICY_ID" >
+            <generator class="increment"/>
+        </id>
+        
+        <many-to-one name="business" column="RESTAURANT_ID" class="com.ogomonkey.eatery.entity.Restaurant" not-null="true" />
+        
+        <property name="policyType" column="POLICY_TYPE" not-null="true" />
+        <property name="shortDescription" column="SHORT_DESCRIPTION" not-null="true" />
+        <property name="fullText" column="FULL_TEXT" />
+        <property name="effectiveDate" column="EFFECTIVE_DATE" not-null="true" />
+        <property name="expired" column="IS_EXPIRED" />
+                    
+        <!-- Auditing columns -->
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="createdBy" column="CREATED_BY" />
+        <property name="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+        <property name="lastUpdatedBy" column="LAST_UPDATED_BY" />
+    </class>
+</hibernate-mapping>

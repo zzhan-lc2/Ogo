@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.common.entity.customer.CustomerInstrument" schema="ofudii" table="CUST_FINANCE_INSTRUMENTS">
+        <id name="id" column="CFINANCE_ID" type="string">
+            <generator class="uuid">
+                <param name="separator">-</param>
+            </generator>
+        </id>
+        
+        <many-to-one name="customer" column="CUSTOMER_ID" class="com.ogomonkey.common.entity.customer.Customer" not-null="true" />
+            
+        <property name="type" column="INSTRUMENT_TYPE" not-null="true" />
+        <property name="name" column="NAME" />
+        <property name="number" column="INSTRUMENT_NUMBER" not-null="true" />
+        <property name="numberEncrypted" column="IS_NUMBER_ENCRYPTED" not-null="true" />
+        <property name="signupStatus" column="SIGNUP_STATUS" not-null="true" />
+        <property name="statusDate" column="SIGNUP_STATUS_DATE" not-null="true" />
+        <property name="expirationDate" column="EXPIRE_DATE" />
+        <property name="notes" column="NOTES" />
+        
+        <component name="billingAddress" class="com.ogomonkey.common.datatype.Address">
+            <property name="addressLine1" column="BILL_ADDR_LINE1" />
+            <property name="addressLine2" column="BILL_ADDR_LINE2" />
+            <property name="city" column="BILL_CITY" />
+            <property name="state" column="BILL_STATE" />
+            <property name="country" column="BILL_COUNTRY" />
+            <property name="zipcode" column="BILL_ZIPCODE" />
+            <property name="lineEncrypted" column="IS_LINE_ENCRYPTED" />
+        </component>
+        
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="createdBy" column="CREATED_BY" />
+        <property name="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+        <property name="lastUpdatedBy" column="LAST_UPDATED_BY" />
+    </class>
+</hibernate-mapping>

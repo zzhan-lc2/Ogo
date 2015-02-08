@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.eatery.entity.Table" schema="ofudii" table="RESTAURANT_TABLES">
+        <id name="id" column="TABLE_ID" >
+            <generator class="increment"/>
+        </id>
+        
+        <many-to-one name="restaurant" column="RESTAURANT_ID" class="com.ogomonkey.eatery.entity.Restaurant" not-null="true" />
+            
+        <property name="tableNumber" column="TABLE_NUMBER" not-null="true" />
+        <property name="name" column="NAME" />
+        <property name="capacity" column="CAPACITY" />
+        <property name="reservable" column="RESERVABLE" />
+        <property name="tableStatus" column="TABLE_STATUS" />
+        <property name="statusDate" column="STATUS_DATETIME" />
+        <property name="equipmentType" column="EQUIPMENT_TYPE" />
+        <property name="equipmentId" column="EQUIPMENT_ID" />
+        <property name="notes" column="NOTES" />
+                
+        <!-- Auditing columns -->
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="createdBy" column="CREATED_BY" />
+        <property name="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+        <property name="lastUpdatedBy" column="LAST_UPDATED_BY" />
+    </class>
+</hibernate-mapping>

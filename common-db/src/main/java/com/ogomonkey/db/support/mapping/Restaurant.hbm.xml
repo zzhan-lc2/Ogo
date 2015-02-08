@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.eatery.entity.Restaurant" schema="ofudii" table="BUSINESS_RESTAURANTS">
+        <id name="id" column="RESTAURANT_ID" type="string">
+            <generator class="uuid">
+                <param name="separator">-</param>
+            </generator>
+        </id>
+        
+        <property name="name" column="NAME" not-null="true" />
+        <property name="businessCategory" column="CATEGORY" />
+        <property name="shortDescription" column="SHORT_DESCRIPTION" />
+        <property name="fullDescription" column="FULL_DESCRIPTION" />
+        <property name="ein" column="TAX_EIN" />
+        <property name="capacity" column="PEOPLE_CAPACITY" />
+        <property name="mainPhone" column="MAIN_PHONE" not-null="true" />
+        <property name="signupStatus" column="SIGNUP_STATUS_DATE" not-null="true" />
+        <property name="riskStatus" column="RISK_STATUS" />
+        <property name="riskStatusDate" column="RISK_STATUS_DATE" />
+        <property name="hasBar" column="HAS_BAR" not-null="true" />
+        <property name="foodStyle" column="FOOD_STYLE" not-null="true" />
+        <property name="foodSubStyle" column="FOOD_SUB_STYLE" />
+        
+        <component name="address" class="com.ogomonkey.common.datatype.Address">
+            <property name="addressLine1" column="ENCRY_ADDR_LINE1" />
+            <property name="addressLine2" column="ENCRY_ADDR_LINE2" />
+            <property name="city" column="CITY" />
+            <property name="state" column="STATE" />
+            <property name="country" column="COUNTRY" />
+            <property name="zipcode" column="ZIPCODE" />
+            <property name="lineEncrypted" column="IS_LINE_ENCRYPTED" />
+        </component>
+        
+        <set name="tables" inverse="true" cascade="all" lazy="false" >
+            <key column="RESTAURANT_ID"/>
+            <one-to-many class="com.ogomonkey.eatery.entity.Table"/>
+        </set>
+        <set name="licenses" inverse="true" cascade="all" lazy="false" >
+            <key column="RESTAURANT_ID"/>
+            <one-to-many class="com.ogomonkey.common.entity.business.BusinessLicense"/>
+        </set>
+        <set name="businessHours" inverse="true" cascade="all" lazy="false" >
+            <key column="RESTAURANT_ID"/>
+            <one-to-many class="com.ogomonkey.common.entity.business.BusinessHour"/>
+        </set>
+        <set name="businessPolicies" inverse="true" cascade="all" lazy="false" >
+            <key column="RESTAURANT_ID"/>
+            <one-to-many class="com.ogomonkey.common.entity.business.BusinessPolicy"/>
+        </set>
+        <set name="businessPersonals" inverse="true" cascade="all" lazy="true" >
+            <key column="RESTAURANT_ID"/>
+            <one-to-many class="com.ogomonkey.common.entity.business.BusinessPersonal"/>
+        </set>
+        <set name="financialInstruments" inverse="true" cascade="all" lazy="true" >
+            <key column="RESTAURANT_ID"/>
+            <one-to-many class="com.ogomonkey.common.entity.business.BusinessInstrument"/>
+        </set>
+        
+        <!-- TODO -->
+        
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="createdBy" column="CREATED_BY" />
+        <property name="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+        <property name="lastUpdatedBy" column="LAST_UPDATED_BY" />
+    </class>
+</hibernate-mapping>

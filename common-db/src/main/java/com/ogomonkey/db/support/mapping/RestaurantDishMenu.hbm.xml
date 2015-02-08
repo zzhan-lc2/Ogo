@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.eatery.entity.DishMenu" schema="ofudii" table="RESTAURANT_DISHMENU">
+        <id name="id" column="DISH_MENU_ID">
+            <generator class="increment"/>
+        </id>
+        
+        <many-to-one name="restaurant" column="RESTAURANT_ID" class="com.ogomonkey.eatery.entity.Restaurant" not-null="true" />
+        
+        <property name="name" column="DISH_NAME" not-null="true" />
+        <property name="dishType" column="DISH_TYPE" not-null="true" />
+        <property name="category" column="CATEGORY" not-null="true" />
+        <property name="subCategory" column="SUB_CATEGORY" />
+        <property name="shortDescription" column="SHORT_DESC" />
+        <property name="longDescription" column="LONG_DESC" />
+        <property name="listPrice" column="LIST_PRICE" />
+        <property name="salePrice" column="SALE_PRICE" />
+        <component name="saleDateRange" class="com.ogomonkey.common.datatype.DateRange" >
+            <property name="start" column="SALE_START_DATE" />
+            <property name="end" column="SALE_END_DATE" />
+        </component>
+        
+        <property name="spicyLevel" column="SPICY_LEVEL" />
+        <property name="serveInstructions" column="SERVE_INSTRUCT" />
+        <property name="calories" column="CALORIES" />
+        <property name="availability" column="AVAILABILITY" />
+        <property name="status" column="MENU_STATUS" not-null="true" />
+        <property name="statusDate" column="MENU_STATUS_DATE" />
+        
+        <set name="ingredients" inverse="true" cascade="all" lazy="false" >
+            <key column="DISH_MENU_ID"/>
+            <one-to-many class="com.ogomonkey.eatery.entity.DishIngredient"/>
+        </set>
+        <set name="medias" inverse="true" cascade="all" lazy="false" >
+            <key column="DISH_MENU_ID"/>
+            <one-to-many class="com.ogomonkey.eatery.entity.MenuMedia"/>
+        </set>
+        
+        <!-- auditing columns -->
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="createdBy" column="CREATED_BY" />
+        <property name="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+        <property name="lastUpdatedBy" column="LAST_UPDATED_BY" />
+    </class>
+</hibernate-mapping>

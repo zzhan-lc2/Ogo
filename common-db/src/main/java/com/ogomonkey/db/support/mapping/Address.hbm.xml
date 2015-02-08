@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.common.entity.AddressEntity" schema="ofudii" table="ADDRESSES">
+        <id name="id" column="ADDRESS_ID" type="string">
+            <generator class="uuid">
+                <param name="separator">-</param>
+            </generator>
+        </id>
+                    
+        <property name="relatedEntityType" column="RELATED_TYPE" />
+        <property name="relatedEntityId" column="RELATED_ID" />
+        <component name="address" class="com.ogomonkey.common.datatype.Address">
+            <property name="addressLine1" column="ENCRY_ADDR_LINE1" />
+            <property name="addressLine2" column="ENCRY_ADDR_LINE2" />
+            <property name="city" column="CITY" />
+            <property name="state" column="STATE" />
+            <property name="country" column="COUNTRY" />
+            <property name="zipcode" column="ZIPCODE" />
+            <property name="lineEncrypted" column="IS_LINE_ENCRYPTED" />
+        </component>
+        <property name="addressType" column="ADDRESS_TYPE" />
+        <component name="location" class="com.ogomonkey.common.datatype.Location">
+            <property name="latDD" column="LOCATION_LAT_DD" />
+            <property name="lonDD" column="LOCATION_LON_DD" />
+            <property name="elev" column="LOCATION_ELEV" />
+        </component>
+        
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="createdBy" column="CREATED_BY" />
+        <property name="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+        <property name="lastUpdatedBy" column="LAST_UPDATED_BY" />
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.common.entity.business.BusinessPersonal" schema="ofudii" table="RESTAURANTS_PERSONALS">
+        <id name="id" column="PERSONAL_ID" type="string">
+            <generator class="uuid">
+                <param name="separator">-</param>
+            </generator>
+        </id>
+        
+        <many-to-one name="business" column="RESTAURANT_ID" class="com.ogomonkey.eatery.entity.Restaurant" not-null="true" />
+        
+        <property name="firstName" column="FIRST_NAME" />
+        <property name="lastName" column="LAST_NAME" />
+        <property name="userRole" column="USER_ROLE" not-null="true" />
+        <property name="login" column="LOGIN" not-null="true" />
+        <property name="encryptedPassword" column="PASSWORD" not-null="true" />
+        <property name="signupStatus" column="SIGNUP_STATUS" not-null="true" />
+        <property name="signupDate" column="SIGNUP_STATUS_DATE" />
+        <property name="positionType" column="POSITION_TYPE" />
+        <property name="sex" column="SEX" />
+        <property name="employeeNumber" column="EMPLOYEE_NUMBER" />
+        <property name="salaryType" column="SALARY_TYPE" />
+        <!--
+        <property name="salary" type="org.jadira.usertype.moneyandcurrency.joda.PersistentMoneyAmount" >
+            <column name="SALARY_CURRENCY" />
+            <column name="SALARY_AMOUNT" />
+        </property>
+        -->
+        <component name="badgePhotoUrl" class="com.ogomonkey.common.datatype.FileRepositoryPath">
+            <property name="repositoryName" column="IMAGE_REPO_NAME" />
+            <property name="url" column="IMAGE_REPO_URL" />
+        </component>
+        
+         <component name="address" class="com.ogomonkey.common.datatype.Address">
+            <property name="city" column="CITY" />
+            <property name="state" column="STATE" />
+            <property name="country" column="COUNTRY" />
+            <property name="zipcode" column="ZIPCODE" />
+        </component>
+        
+        <set name="communications" inverse="true" cascade="all" order-by="STATUS_DATE desc" lazy="true" >
+            <key column="CUSTOMER_ID"/>
+            <one-to-many class="com.ogomonkey.common.entity.customer.CustomerComm"/>
+        </set>
+        
+        <property name="hireDate" column="HIRE_DATE" />
+        <property name="terminationDate" column="TERMINATION_DATE" />
+        <property name="hiringAgency" column="HIRE_AGENCY" />
+        <property name="notes" column="NOTES" />
+        
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="createdBy" column="CREATED_BY" />
+        <property name="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+        <property name="lastUpdatedBy" column="LAST_UPDATED_BY" />
+   </class>
+</hibernate-mapping>

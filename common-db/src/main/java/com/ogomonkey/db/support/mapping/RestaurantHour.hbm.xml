@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.common.entity.business.BusinessHour" schema="ofudii" table="RESTAURANT_HOURS">
+        <id name="id" column="HOUR_ID" >
+            <generator class="increment"/>
+        </id>
+        
+        <many-to-one name="business" column="RESTAURANT_ID" class="com.ogomonkey.eatery.entity.Restaurant" not-null="true" />
+            
+        <property name="dayOfWeek" column="DAY_OF_WEEK" not-null="true" />
+        <property name="startHour" column="START_HOUR" not-null="true" />
+        <property name="startMinute" column="START_MINUTE" />
+        <property name="endHour" column="END_HOUR" />
+        <property name="endMinute" column="END_MINUTE" />
+        <property name="holiday" column="IS_HOLIDAY" />
+        <property name="specialNotes" column="NOTES" />
+                
+    </class>
+</hibernate-mapping>

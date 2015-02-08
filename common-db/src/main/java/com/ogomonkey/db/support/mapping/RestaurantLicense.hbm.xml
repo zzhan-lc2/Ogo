@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.common.entity.business.BusinessLicense" schema="ofudii" table="RESTAURANT_LICENSES">
+        <id name="id" column="LICENSE_ID" >
+            <generator class="increment"/>
+        </id>
+        
+        <many-to-one name="business" column="RESTAURANT_ID" class="com.ogomonkey.eatery.entity.Restaurant" not-null="true" />
+        
+        <property name="licenseType" column="LICENSE_TYPE" not-null="true" />
+        <property name="licenseName" column="LICENSE_NAME" not-null="true" />
+        <property name="licenseId" column="LICENSE_DOC_ID" />
+        <property name="licenseAgency" column="LICENSE_AGENCY" />
+        <property name="grantDate" column="GRANT_DATE" />
+        <property name="expireDate" column="EXPIRED_DATE" />
+        <property name="applicantName" column="APPLICANT_NAME" />
+        <property name="specialNotes" column="SPECIAL_NOTES" />
+        
+        <component name="licenseImagePath" class="com.ogomonkey.common.datatype.FileRepositoryPath">
+            <property name="repositoryName" column="IMAGE_REPO_NAME" />
+            <property name="url" column="IMAGE_REPO_URL" />
+        </component>
+            
+        <!-- Auditing columns -->
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="createdBy" column="CREATED_BY" />
+        <property name="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+        <property name="lastUpdatedBy" column="LAST_UPDATED_BY" />
+    </class>
+</hibernate-mapping>
