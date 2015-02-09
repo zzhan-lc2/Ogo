@@ -173,8 +173,16 @@ public final class RestaurantBuilder {
         entity.setName(name);
         entity.setAddress(address);
         entity.setBusinessCategory(businessCategory);
-        entity.setBusinessHours(businessHours);
-        entity.setBusinessPersonals(businessPersonals);
+        if (businessHours != null) {
+            for (BusinessHour hour : businessHours) {
+                entity.addBusinessHour(hour);
+            }
+        }
+        if (businessPersonals != null) {
+            for (BusinessPersonal person : businessPersonals) {
+                entity.addPersonal(person);
+            }
+        }
         entity.setBusinessPolicies(businessPolicies);
         entity.setCapacity(capacity);
         entity.setCommunications(communications);

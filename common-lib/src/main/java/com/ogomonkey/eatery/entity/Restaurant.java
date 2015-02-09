@@ -66,4 +66,9 @@ public class Restaurant extends Business {
         drinkMenu.setRestaurant(this);
         this.drinkMenus.add(drinkMenu);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

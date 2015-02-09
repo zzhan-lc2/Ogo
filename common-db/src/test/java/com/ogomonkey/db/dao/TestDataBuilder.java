@@ -1,13 +1,13 @@
 package com.ogomonkey.db.dao;
 
-import java.text.ParseException;
+import static com.ogomonkey.db.util.DateUtil.toDate;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 import lombok.Data;
 
-import org.apache.commons.lang3.time.DateUtils;
 import org.testng.collections.Lists;
 
 import com.google.common.collect.Sets;
@@ -51,6 +51,7 @@ public class TestDataBuilder {
     public TestDataBuilder() {
         buildAddresses();
         buildCustomers();
+        buildRestaurants();
     }
 
     void buildAddresses() {
@@ -216,13 +217,4 @@ public class TestDataBuilder {
         return regular;
     }
 
-    static Date toDate(String yyyy_mm_dd) {
-        try {
-            return DateUtils.parseDate(yyyy_mm_dd, DATE_PATTERN);
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return null;
-        }
-    }
 }

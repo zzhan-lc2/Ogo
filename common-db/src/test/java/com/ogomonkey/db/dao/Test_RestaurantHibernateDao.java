@@ -17,10 +17,11 @@ public class Test_RestaurantHibernateDao extends HibernateDaoUnitTestCase {
     private RestaurantHibernateDao dao;
 
     List<Restaurant> restaurants;
+    TestDataBuilder builder;
 
     @BeforeClass
     public void init() {
-        TestDataBuilder builder = new TestDataBuilder();
+        builder = new TestDataBuilder();
         restaurants = builder.getRestaurants();
 
         for (Restaurant entity : restaurants) {
@@ -33,5 +34,15 @@ public class Test_RestaurantHibernateDao extends HibernateDaoUnitTestCase {
             Restaurant actual = dao.findById(entity.getId());
             Assert.assertEquals(actual, entity);
         }
+    }
+
+    public void test_findByNameZipcode() {
+        Restaurant expected = builder.getRestaurantNoBar();
+        String name = expected.getName();
+        String zipcode = expected.getAddress().getZipcode();
+
+        List<Restaurant> actual = dao.findByNameZipcode(name, zipcode);
+        Assert.assertEquals(actual.size(), 1);
+        Assert.assertEquals(actual.get(0), expected);
     }
 }

@@ -1,12 +1,12 @@
 package com.ogomonkey.common.entity.business;
 
 import java.util.Currency;
-import java.util.Objects;
 import java.util.Set;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Sets;
 import com.ogomonkey.common.entity.NamedEntity;
@@ -30,6 +30,16 @@ public class Business extends NamedEntity {
     private Set<BusinessPolicy> businessPolicies;
     private Set<BusinessPersonal> businessPersonals;
     private Set<Instrument> financialInstruments;
+
+    public void addPersonal(BusinessPersonal personal) {
+        Preconditions.checkNotNull(personal, "personal cannot be null");
+
+        if (null == businessPersonals) {
+            businessPersonals = Sets.newHashSet();
+        }
+        personal.setBusiness(this);
+        businessPersonals.add(personal);
+    }
 
     public void addFinancialInstrument(Instrument instrument) {
         if (null == financialInstruments) {
@@ -70,7 +80,7 @@ public class Business extends NamedEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getId());
+        return Objects.hashCode(this.getId());
     }
 
     @Override
@@ -84,11 +94,11 @@ public class Business extends NamedEntity {
 
         Business other = (Business) obj;
         if (this.getId() != null && other.getId() != null) {
-            return Objects.equals(this.getId(), other.getId());
+            return Objects.equal(this.getId(), other.getId());
         }
 
-        return Objects.equals(this.getName(), other.getName()) &&
-            Objects.equals(this.getBusinessType(), other.getBusinessType()) &&
-            Objects.equals(this.getMainPhone(), other.getMainPhone());
+        return Objects.equal(this.getName(), other.getName()) &&
+            Objects.equal(this.getBusinessType(), other.getBusinessType()) &&
+            Objects.equal(this.getMainPhone(), other.getMainPhone());
     }
 }

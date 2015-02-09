@@ -16,6 +16,8 @@ import com.ogomonkey.common.entity.Personal;
 @EqualsAndHashCode(callSuper = true)
 @ToString(exclude = "business")
 public class BusinessPersonal extends Personal {
+    private static final long serialVersionUID = 1L;
+
     private String id;
     private Business business;
     private String userRole; // like: business Admin; FinancialAdmin; CustomerService; etc.
