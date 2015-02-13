@@ -3,13 +3,18 @@ package com.ogomonkey.security.entity;
 import javax.xml.bind.DatatypeConverter;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import com.ogomonkey.security.dao.CryptInfoType;
+import com.ogomonkey.common.entity.AuditableEntity;
 
 @Data
-public class SaltInfo {
+@EqualsAndHashCode(callSuper = false)
+public class SaltInfo extends AuditableEntity {
+    private static final long serialVersionUID = 1L;
+
     private String relatedEntityId;
-    private CryptInfoType infoType;
+    private String relatedEntityType;
+    private String passwordForAlg;
     private byte[] salt;
 
     public void setSaltBase64Str(String saltStr) {

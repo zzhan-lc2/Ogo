@@ -1,4 +1,4 @@
-package com.ogomonkey.security.dao;
+package com.ogomonkey.security.entity;
 
 public enum CryptInfoType {
     PASSWORD,
