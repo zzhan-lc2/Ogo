@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.security.entity.SaltInfo" schema="ofudii" table="SECURE_SALT">
+        <id name="relatedEntityId" column="RELATED_ENTITY_ID" type="string">
+        </id>
+                    
+        <property name="relatedEntityType" column="RELATED_TYPE" not-null="true" />
+        <property name="passwordForAlg" column="ALGO_PASSWORD" not-null="true" />
+        <property name="saltBase64Str" column="SALT_BASE64" not-null="true" />
+                
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="createdBy" column="CREATED_BY" />
+        <property name="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+        <property name="lastUpdatedBy" column="LAST_UPDATED_BY" />
+    </class>
+</hibernate-mapping>

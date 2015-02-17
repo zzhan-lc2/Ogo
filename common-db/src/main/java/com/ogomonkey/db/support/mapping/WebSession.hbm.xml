@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.web.entity.Session" schema="ofudii" table="WEB_SESSION">
+        <id name="id" column="SESSION_ID" type="string">
+        </id>
+                    
+        <property name="previousId" column="PREVIOUS_SESSION_ID" />
+        <property name="userId" column="USER_ID" />
+        <property name="type" column="SESSION_TYPE" not-null="true" />
+        <property name="robot" column="IS_ROBOT" not-null="true" />
+        <property name="expired" column="EXPIRED" />
+        <property name="ip" column="IP_ADDR" not-null="true" />
+        <property name="userAgent" column="USER_AGENT" not-null="true" />
+        <property name="deviceId" column="DEVICE_ID" />
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="lastAccessDate" column="LAST_ACCESS_DATE" not-null="true" />
+        <property name="lastAccessDateTime" column="LAST_ACCESS_DATETIME" not-null="true" />
+    </class>
+</hibernate-mapping>

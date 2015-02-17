@@ -7,6 +7,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.ogomonkey.common.datatype.Address;
 import com.ogomonkey.common.datatype.Communication;
+import com.ogomonkey.common.datatype.DateRange;
 
 public final class QueryBuilderUtils {
 
@@ -14,6 +15,21 @@ public final class QueryBuilderUtils {
         if (StringUtils.isNotEmpty(likeValue)) {
             query = query.add(Restrictions.like(fieldName, likeValue, MatchMode.ANYWHERE).ignoreCase());
         }
+        return query;
+    }
+
+    public static Criteria buildDateRageQuery(Criteria query, DateRange dateRange, String dateFieldName) {
+        if (dateRange == null) {
+            return query;
+        }
+
+        if (dateRange.getStart() != null) {
+            query = query.add(Restrictions.ge(dateFieldName, dateRange.getStart()));
+        }
+        if (dateRange.getEnd() != null) {
+            query = query.add(Restrictions.le(dateFieldName, dateRange.getEnd()));
+        }
+
         return query;
     }
 

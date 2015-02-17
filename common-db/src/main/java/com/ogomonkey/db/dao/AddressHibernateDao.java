@@ -1,14 +1,19 @@
 package com.ogomonkey.db.dao;
 
 import java.util.List;
+import java.util.Set;
+
+import javax.annotation.Nullable;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.util.CollectionUtils;
 
 import com.google.common.base.Preconditions;
 import com.jcabi.aspects.LogExceptions;
 import com.jcabi.aspects.Loggable;
 import com.ogomonkey.common.dao.AddressDao;
+import com.ogomonkey.common.datatype.EntityStatus;
 import com.ogomonkey.common.entity.AddressEntity;
 import com.ogomonkey.common.metrics.ReportMetrics;
 import com.ogomonkey.db.support.AbstractHibernateDao;
@@ -25,13 +30,17 @@ public class AddressHibernateDao extends AbstractHibernateDao<AddressEntity> imp
     @Override
     @LogExceptions
     @Loggable(Loggable.INFO)
-    public List<AddressEntity> findByRelatedEntity(String relatedEntityType, String relatedEntityId) {
+    public List<AddressEntity> findByRelatedEntity(String relatedEntityType, String relatedEntityId,
+        @Nullable Set<EntityStatus> statusFilter) {
         Preconditions.checkNotNull(relatedEntityType, "relatedEntityType cannot be null");
         Preconditions.checkNotNull(relatedEntityId, "relatedEntityId cannot be null");
 
         Criteria query = this.createCriteria(AddressEntity.class)
             .add(Restrictions.eq("relatedEntityType", relatedEntityType))
             .add(Restrictions.eq("relatedEntityId", relatedEntityId));
+        if (!CollectionUtils.isEmpty(statusFilter)) {
+            query = query.add(Restrictions.in("status", statusFilter));
+        }
         return (List<AddressEntity>) query.list();
     }
 

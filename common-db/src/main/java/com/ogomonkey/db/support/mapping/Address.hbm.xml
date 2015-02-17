@@ -27,6 +27,7 @@
             <property name="lonDD" column="LOCATION_LON_DD" />
             <property name="elev" column="LOCATION_ELEV" />
         </component>
+        <property name="status" column="ADDR_STATUS" />
         
         <property name="creationDate" column="CREATION_DATE" not-null="true" />
         <property name="createdBy" column="CREATED_BY" />

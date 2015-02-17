@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Currency;
+import java.util.Objects;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.type.StandardBasicTypes;
@@ -79,11 +79,11 @@ public class MoneyUserType implements CompositeUserType {
     }
 
     public boolean equals(final Object x, final Object y) throws HibernateException {
-        return ObjectUtils.equals(x, y);
+        return Objects.equals(x, y);
     }
 
     public int hashCode(final Object x) throws HibernateException {
-        return ObjectUtils.hashCode(x);
+        return Objects.hashCode(x);
     }
 
     public boolean isMutable() {

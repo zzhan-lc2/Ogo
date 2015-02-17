@@ -37,7 +37,7 @@ public class Test_AddressHibernateDao extends HibernateDaoUnitTestCase {
     }
 
     public void test_findByRelatedEntity() {
-        List<AddressEntity> actual = dao.findByRelatedEntity("eType1", "eID1");
+        List<AddressEntity> actual = dao.findByRelatedEntity("eType1", "eID1", null);
         Assert.assertEquals(actual.size(), 2);
     }
 
