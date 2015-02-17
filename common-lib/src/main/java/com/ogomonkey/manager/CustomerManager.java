@@ -3,15 +3,11 @@ package com.ogomonkey.manager;
 import java.util.List;
 
 import com.ogomonkey.common.datatype.Address;
-import com.ogomonkey.common.datatype.CommType;
 import com.ogomonkey.common.datatype.Communication;
 import com.ogomonkey.common.datatype.UserAction;
 import com.ogomonkey.common.entity.customer.Customer;
 
 public interface CustomerManager {
-
-    Customer createCustomer(String userLogin, String password, CommType commType, String commNumber,
-        UserAction userAction);
 
     void addCommunicationToCustomer(Customer customer, Communication comm, UserAction userAction);
 

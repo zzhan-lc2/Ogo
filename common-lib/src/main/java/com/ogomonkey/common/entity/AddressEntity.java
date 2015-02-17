@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import com.ogomonkey.common.datatype.Address;
+import com.ogomonkey.common.datatype.EntityStatus;
 import com.ogomonkey.common.datatype.Location;
 
 @Data
@@ -18,6 +19,7 @@ public class AddressEntity extends AuditableEntity {
     private String relatedEntityType;
     private String relatedEntityId; // could be customer id, instrument id, business id
     private String addressType;
+    private EntityStatus status;
     private Location location;
 
     public void setRelatedEntity(String relatedEntityType, String relatedEntityId) {
