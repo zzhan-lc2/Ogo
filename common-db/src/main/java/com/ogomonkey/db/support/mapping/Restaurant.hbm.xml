@@ -17,13 +17,15 @@
         <property name="ein" column="TAX_EIN" />
         <property name="capacity" column="PEOPLE_CAPACITY" />
         <property name="mainPhone" column="MAIN_PHONE" not-null="true" />
-        <property name="signupStatus" column="SIGNUP_STATUS_DATE" not-null="true" />
+        <property name="signupStatus" column="SIGNUP_STATUS" not-null="true" />
+        <property name="signupDate" column="SIGNUP_STATUS_DATE" not-null="true" />
         <property name="riskStatus" column="RISK_STATUS" />
         <property name="riskStatusDate" column="RISK_STATUS_DATE" />
         <property name="hasBar" column="HAS_BAR" not-null="true" />
         <property name="foodStyle" column="FOOD_STYLE" not-null="true" />
         <property name="foodSubStyle" column="FOOD_SUB_STYLE" />
-        
+        <property name="defaultCurrency" column="DEFAULT_CURRENCY" />
+         
         <component name="address" class="com.ogomonkey.common.datatype.Address">
             <property name="addressLine1" column="ENCRY_ADDR_LINE1" />
             <property name="addressLine2" column="ENCRY_ADDR_LINE2" />
@@ -33,6 +35,11 @@
             <property name="zipcode" column="ZIPCODE" />
             <property name="lineEncrypted" column="IS_LINE_ENCRYPTED" />
         </component>
+        
+        <set name="communications" inverse="true" cascade="all" lazy="false" >
+            <key column="RESTAURANT_ID"/>
+            <one-to-many class="com.ogomonkey.common.entity.business.BusinessComm"/>
+        </set>
         
         <set name="tables" inverse="true" cascade="all" lazy="false" >
             <key column="RESTAURANT_ID"/>

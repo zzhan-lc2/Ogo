@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.ogomonkey.web.entity.Session" schema="ofudii" table="WEB_SESSION">
+    <class name="com.ogomonkey.web.entity.Session" schema="ofudii" table="WEB_SESSIONS">
         <id name="id" column="SESSION_ID" type="string">
         </id>
                     
@@ -11,7 +11,7 @@
         <property name="userId" column="USER_ID" />
         <property name="type" column="SESSION_TYPE" not-null="true" />
         <property name="robot" column="IS_ROBOT" not-null="true" />
-        <property name="expired" column="EXPIRED" />
+        <property name="expired" column="IS_EXPIRED" />
         <property name="ip" column="IP_ADDR" not-null="true" />
         <property name="userAgent" column="USER_AGENT" not-null="true" />
         <property name="deviceId" column="DEVICE_ID" />

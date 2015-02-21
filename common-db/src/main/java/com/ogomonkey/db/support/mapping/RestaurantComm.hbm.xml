@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ogomonkey.common.entity.business.BusinessComm" schema="ofudii" table="RESTAURANT_COMMS">
+        <id name="id" column="RESTAURANT_COMM_ID" type="string">
+            <generator class="uuid">
+                <param name="separator">-</param>
+            </generator>
+        </id>
+        
+        <many-to-one name="business" column="RESTAURANT_ID" class="com.ogomonkey.eatery.entity.Restaurant" not-null="true" />
+            
+        <component name="communication" class="com.ogomonkey.common.datatype.Communication">        
+            <property name="commType" column="COMM_TYPE" not-null="true" />
+            <property name="category" column="CATEGORY" />
+            <property name="commNumber" column="COMM_NUMBER" not-null="true" />
+            <property name="encrypted" column="IS_ENCRYPTED" not-null="true" />
+            <property name="status" column="STATUS" />
+            <property name="statusDate" column="STATUS_DATE" />
+            <property name="tagsStr" column="TAGS" />
+            <property name="notes" column="NOTES" />
+        </component>
+        
+        <property name="creationDate" column="CREATION_DATE" not-null="true" />
+        <property name="createdBy" column="CREATED_BY" />
+        <property name="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+        <property name="lastUpdatedBy" column="LAST_UPDATED_BY" />
+    </class>
+</hibernate-mapping>

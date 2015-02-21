@@ -7,7 +7,7 @@
         <id name="relatedEntityId" column="RELATED_ENTITY_ID" type="string">
         </id>
                     
-        <property name="relatedEntityType" column="RELATED_TYPE" not-null="true" />
+        <property name="relatedEntityType" column="RELATED_ENTITY_TYPE" not-null="true" />
         <property name="passwordForAlg" column="ALGO_PASSWORD" not-null="true" />
         <property name="saltBase64Str" column="SALT_BASE64" not-null="true" />
                 

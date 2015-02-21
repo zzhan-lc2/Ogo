@@ -41,7 +41,7 @@
             <property name="zipcode" column="ZIPCODE" />
         </component>
         
-        <set name="communications" inverse="true" cascade="all" order-by="STATUS_DATE desc" lazy="true" >
+        <set name="communications" inverse="true" cascade="all" order-by="STATUS_DATE desc" lazy="false" >
             <key column="CUSTOMER_ID"/>
             <one-to-many class="com.ogomonkey.common.entity.customer.CustomerComm"/>
         </set>
