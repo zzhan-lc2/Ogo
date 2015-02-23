@@ -30,8 +30,8 @@
         </property>
         -->
         <component name="badgePhotoUrl" class="com.ogomonkey.common.datatype.FileRepositoryPath">
-            <property name="repositoryName" column="IMAGE_REPO_NAME" />
-            <property name="url" column="IMAGE_REPO_URL" />
+            <property name="repositoryName" column="BADGE_REPO_NAME" />
+            <property name="url" column="BADGE_REPO_URL" />
         </component>
         
          <component name="address" class="com.ogomonkey.common.datatype.Address">

@@ -19,11 +19,13 @@ create table ADDRESSES
     STATE                varchar(32)     not null,
     COUNTRY              varchar(64)     not null,
     ZIPCODE              varchar(32),
+    IS_LINE_ENCRYPTED    boolean,
     ADDRESS_TYPE         varchar(32),
     LOCATION_LAT_DD      DOUBLE,
     LOCATION_LON_DD      DOUBLE,
     LOCATION_ELEV        DOUBLE  comment 'elevation for the location (in meters)',
     ADDR_STATUS          varchar(32),
+    ADDR_STATUS_DATE     DATETIME,
     
     CREATION_DATE        DATETIME       not null comment 'auditing column: the creation date/time',
     CREATED_BY           varchar(64)    not null comment 'auditing column: the creator name',
@@ -31,6 +33,10 @@ create table ADDRESSES
     LAST_UPDATED_BY      varchar(64)    not null comment 'auditing column: the last updated user name',
     
     primary key (ADDRESS_ID)
-)
+);
 
-create index ADDRESS_RELATED_ID on table ADDRESSES (RELATED_ID);
+create index ADDRESS_RELATED_ID on ADDRESSES (RELATED_ID);
+
+create index ADDRESS_ZIPCODE on ADDRESSES (ZIPCODE);
+
+create index ADDRESS_STATECITY on ADDRESSES (COUNTRY,STATE,CITY);

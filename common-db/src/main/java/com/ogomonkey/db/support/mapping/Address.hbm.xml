@@ -28,6 +28,7 @@
             <property name="elev" column="LOCATION_ELEV" />
         </component>
         <property name="status" column="ADDR_STATUS" />
+        <property name="statusDate" column="ADDR_STATUS_DATE" />
         
         <property name="creationDate" column="CREATION_DATE" not-null="true" />
         <property name="createdBy" column="CREATED_BY" />

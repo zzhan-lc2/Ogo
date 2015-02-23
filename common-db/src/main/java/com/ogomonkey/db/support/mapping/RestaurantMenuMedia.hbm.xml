@@ -11,13 +11,11 @@
         </id>
         
         <many-to-one name="dishMenu" column="DISH_MENU_ID" class="com.ogomonkey.eatery.entity.DishMenu" />
-        <!-- 
         <many-to-one name="drinkMenu" column="DRINK_MENU_ID" class="com.ogomonkey.eatery.entity.DrinkMenu" />
-        -->
         
-        <property name="name" column="NAME" not-null="true" />
+        <property name="name" column="MEDIA_NAME" not-null="true" />
         <property name="mediaType" column="MEDIA_TYPE" not-null="true" />
-        <property name="detailFormat" column="detailFormat" />
+        <property name="detailFormat" column="DETAIL_FORMAT" />
         <property name="quality" column="QUALITY" />
         <property name="widthPixel" column="WIDTH_PIXEL" />
         <property name="heightPixel" column="HEIGHT_PIXEL" />
