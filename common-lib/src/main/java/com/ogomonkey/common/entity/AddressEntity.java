@@ -1,5 +1,6 @@
 package com.ogomonkey.common.entity;
 
+import java.util.Date;
 import java.util.Objects;
 
 import lombok.Data;
@@ -20,6 +21,7 @@ public class AddressEntity extends AuditableEntity {
     private String relatedEntityId; // could be customer id, instrument id, business id
     private String addressType;
     private EntityStatus status;
+    private Date statusDate;
     private Location location;
 
     public void setRelatedEntity(String relatedEntityType, String relatedEntityId) {

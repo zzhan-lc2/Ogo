@@ -4,6 +4,6 @@ public enum EntityStatus {
     INIT,
     PENDING_VERIFY,
     VERIFIED,
-    REJECT,
+    REJECTED,
     EXPIRED;
 }

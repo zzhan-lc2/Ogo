@@ -19,8 +19,8 @@ public abstract class MediaEntity extends AuditableEntity {
     private String detailFormat; // such as: PNG/JPG/GIF for image;
     private FileRepositoryPath fileLocation;
     private Quality quality;
-    private Long widthPixel;
-    private Long heightPixel;
+    private Integer widthPixel;
+    private Integer heightPixel;
     private Long videoSeconds;
     private String description;
     private Boolean expired;
